@@ -1,5 +1,6 @@
-using Google.Cloud.PubSub.V1;
 using iThome2024.ProcessService.Data;
+using iThome2024.ProcessService.ViewModel;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -28,9 +29,10 @@ app.MapGet("/Test/DbConnection", (TicketSalesContext context) =>
 .WithName("TestDbConnection")
 .WithOpenApi();
 
-app.MapPost("/Test/SubEndpoint", (PubsubMessage context) =>
+app.MapPost("/Test/SubEndpoint", (PubSubMessage context) =>
 {
-    app.Logger.LogInformation(context.Data.ToStringUtf8());
+    string utf8String = Base64Converter.Base64ToUtf8(context.Message?.Data ?? "");
+    app.Logger.LogInformation(utf8String);
     return Results.Ok();
 })
 .WithName("TestSubEndpoint")
