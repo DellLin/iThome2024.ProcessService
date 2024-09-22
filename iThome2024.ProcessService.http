@@ -1,0 +1,6 @@
+@iThome2024.ProcessService_HostAddress = http://localhost:5287
+
+GET {{iThome2024.ProcessService_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
