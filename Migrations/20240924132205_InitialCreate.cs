@@ -18,12 +18,12 @@ namespace iThome2024.ProcessService.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Name = table.Column<string>(type: "text", nullable: true),
-                    EventDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    StartSalesDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    EndSalesDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    Description = table.Column<string>(type: "text", nullable: false),
-                    Remark = table.Column<string>(type: "text", nullable: false)
+                    Name = table.Column<string>(type: "varchar(200)", nullable: false),
+                    EventDate = table.Column<DateTime>(type: "timestamp", nullable: false),
+                    StartSalesDate = table.Column<DateTime>(type: "timestamp", nullable: false),
+                    EndSalesDate = table.Column<DateTime>(type: "timestamp", nullable: false),
+                    Description = table.Column<string>(type: "varchar(2000)", nullable: true),
+                    Remark = table.Column<string>(type: "varchar(500)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -36,9 +36,9 @@ namespace iThome2024.ProcessService.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Username = table.Column<string>(type: "text", nullable: true),
-                    Password = table.Column<string>(type: "text", nullable: true),
-                    CreateTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
+                    Username = table.Column<string>(type: "varchar(200)", nullable: true),
+                    Password = table.Column<string>(type: "varchar(200)", nullable: true),
+                    CreateTime = table.Column<DateTime>(type: "timestamp", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -52,8 +52,8 @@ namespace iThome2024.ProcessService.Migrations
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     EventId = table.Column<int>(type: "integer", nullable: false),
-                    Area = table.Column<string>(type: "text", nullable: false),
-                    Name = table.Column<string>(type: "text", nullable: false),
+                    Area = table.Column<string>(type: "varchar(50)", nullable: true),
+                    Name = table.Column<string>(type: "varchar(200)", nullable: false),
                     Status = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>

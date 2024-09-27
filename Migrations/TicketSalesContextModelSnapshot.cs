@@ -22,7 +22,7 @@ namespace iThome2024.ProcessService.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("iThome2024.ProcessService.Data.Event", b =>
+            modelBuilder.Entity("iThome2024.ProcessService.Data.Model.Event", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -31,31 +31,30 @@ namespace iThome2024.ProcessService.Migrations
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("varchar(2000)");
 
                     b.Property<DateTime>("EndSalesDate")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp");
 
                     b.Property<DateTime>("EventDate")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp");
 
                     b.Property<string>("Name")
-                        .HasColumnType("text");
+                        .IsRequired()
+                        .HasColumnType("varchar(200)");
 
                     b.Property<string>("Remark")
-                        .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("varchar(500)");
 
                     b.Property<DateTime>("StartSalesDate")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp");
 
                     b.HasKey("Id");
 
                     b.ToTable("Event");
                 });
 
-            modelBuilder.Entity("iThome2024.ProcessService.Data.Seat", b =>
+            modelBuilder.Entity("iThome2024.ProcessService.Data.Model.Seat", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -64,15 +63,14 @@ namespace iThome2024.ProcessService.Migrations
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Area")
-                        .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("varchar(50)");
 
                     b.Property<int>("EventId")
                         .HasColumnType("integer");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("varchar(200)");
 
                     b.Property<int>("Status")
                         .HasColumnType("integer");
@@ -84,7 +82,7 @@ namespace iThome2024.ProcessService.Migrations
                     b.ToTable("Seat");
                 });
 
-            modelBuilder.Entity("iThome2024.ProcessService.Data.User", b =>
+            modelBuilder.Entity("iThome2024.ProcessService.Data.Model.User", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -93,22 +91,22 @@ namespace iThome2024.ProcessService.Migrations
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("CreateTime")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp");
 
                     b.Property<string>("Password")
-                        .HasColumnType("text");
+                        .HasColumnType("varchar(200)");
 
                     b.Property<string>("Username")
-                        .HasColumnType("text");
+                        .HasColumnType("varchar(200)");
 
                     b.HasKey("Id");
 
                     b.ToTable("User");
                 });
 
-            modelBuilder.Entity("iThome2024.ProcessService.Data.Seat", b =>
+            modelBuilder.Entity("iThome2024.ProcessService.Data.Model.Seat", b =>
                 {
-                    b.HasOne("iThome2024.ProcessService.Data.Event", "Event")
+                    b.HasOne("iThome2024.ProcessService.Data.Model.Event", "Event")
                         .WithMany("Seats")
                         .HasForeignKey("EventId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -117,7 +115,7 @@ namespace iThome2024.ProcessService.Migrations
                     b.Navigation("Event");
                 });
 
-            modelBuilder.Entity("iThome2024.ProcessService.Data.Event", b =>
+            modelBuilder.Entity("iThome2024.ProcessService.Data.Model.Event", b =>
                 {
                     b.Navigation("Seats");
                 });
