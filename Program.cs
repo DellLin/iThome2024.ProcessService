@@ -40,6 +40,10 @@ app.MapPost("/Test/SubEndpoint", async (PubSubMessage pubSubMessage,
     {
         return Results.BadRequest();
     }
+    if (await context.Ticket.Where(t => t.SeatId == ticketViewModel.SeatId).AnyAsync())
+    {
+        return Results.Ok();
+    }
     await context.Ticket.AddAsync(new Ticket
     {
         SeatId = ticketViewModel.SeatId,

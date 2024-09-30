@@ -1,7 +1,9 @@
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
 namespace iThome2024.ProcessService.Data.Model;
 
+[Index(nameof(SeatId), IsUnique = true)]
 public class Ticket
 {
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

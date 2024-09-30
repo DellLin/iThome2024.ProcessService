@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using iThome2024.ProcessService.Data;
@@ -11,9 +12,11 @@ using iThome2024.ProcessService.Data;
 namespace iThome2024.ProcessService.Migrations
 {
     [DbContext(typeof(TicketSalesContext))]
-    partial class TicketSalesContextModelSnapshot : ModelSnapshot
+    [Migration("20240927132425_CreateTableTicket")]
+    partial class CreateTableTicket
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -101,8 +104,7 @@ namespace iThome2024.ProcessService.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("SeatId")
-                        .IsUnique();
+                    b.HasIndex("SeatId");
 
                     b.HasIndex("UserId");
 

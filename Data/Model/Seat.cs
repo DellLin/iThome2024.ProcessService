@@ -4,6 +4,7 @@ namespace iThome2024.ProcessService.Data.Model;
 
 public class Seat
 {
+
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int Id { get; set; }
     public int EventId { get; set; }
